@@ -2,34 +2,28 @@
 
 usuario_correcto = "alvaro"
 usuario = input("Introduce tu nombre de usuario: ")
-banco = 50
 
-# Funcion de pago
+# dinero que tienes
 
-def pagar(total, banco):
-    pago = banco - total
-    return pago
+banco = 50  
 
-# Comprobar usuario
 if usuario == usuario_correcto:
     print(f"¡Bienvenido {usuario}!")
 
     total = 0
     contador = 0
-    
-# Seleccionar producto
-    
+
+# Seleccionar productos
+
     while True:
-        print("Selecciona la operación:")
+        print("\nSelecciona la operación:")
         print("1. Kinder (1.50€)")
         print("2. Agua (0.80€)")
         print("3. Papas (1.20€)")
         print("4. Vapes (5.00€)")
         print("5. Papel de fumar (2.00€)")
-        print("0. Pagar")
-        opcion = int(input())
-        
-# Sumatoria al contador
+        print("0. Pagar y salir")
+        opcion = int(input("Elige una opción: "))
 
         if opcion == 1:
             total += 1.50
@@ -52,14 +46,23 @@ if usuario == usuario_correcto:
             contador += 1
             print("Has seleccionado Papel de fumar.")
         elif opcion == 0:
-            print(f"Realizando pago...")
-            print(f"Has seleccionado {contador} productos, con un total de {total}€.")
-            pago = pagar(total, banco)
-                    break
+            print(f"\nHas seleccionado {contador} productos, con un total de {total:.2f}€.")
+
+# Dinero insuficiente
+
+            if total > banco:
+                print("No tienes suficiente dinero en el banco.")
+                
+# Mostrar saldo restante
+
+            else:
+                banco = banco - total
+                print("Pago realizado correctamente.")
+                print(f"Tu saldo restante es: {banco:.2f}€")
+
+            print("\nGracias por tu compra. ¡Hasta luego!")
+            break  
         else:
             print("Opción no válida.")
-        
-        print()
-
 else:
     print("Usuario incorrecto.")
