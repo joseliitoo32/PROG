@@ -1,20 +1,18 @@
-def cuentaA(texto):
-    cuenta = texto.count("a") + texto.count("A")
-    return cuenta
-
-def cuentaABucle(texto):
+def cuentaYReemplazaVocales(texto):
+    vocales = "aeiouAEIOU"
     cuenta = 0
-    for letra in texto:
-        cuenta += 1
-
-def cuentaYReemplazaA(texto):
-    cuenta = texto.count("a") + texto.count("A") 
-    nuevoTexto = texto.replace("a", "x")
-    nuevoTexto = nuevoTexto.replace("A", "X")
-    return nuevoTexto
-
-
+    nuevoTexto = ""
     
+    for letra in texto:
+        if letra in vocales:
+            cuenta += 1
+            nuevoTexto += "X"
+        else:
+            nuevoTexto += letra
+            
+    return cuenta, nuevoTexto
+
 frase = "Hola y Adios"
-print(cuentaA(frase))
-print(cuentaYReemplazaA(frase))
+cantidad, reemplazada = cuentaYReemplazaVocales(frase)
+print("Cantidad de vocales:", cantidad)
+print("Texto con vocales reemplazadas:", reemplazada)
