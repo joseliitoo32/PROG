@@ -1,66 +1,414 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Portfolio de Programación</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            max-width: 900px;
-            margin: auto;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        h1, h2 {
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 4px;
-        }
-        ul {
-            list-style-type: square;
-            margin-left: 20px;
-        }
-        a {
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        footer {
-            margin-top: 40px;
-            padding-top: 15px;
-            border-top: 2px solid #ddd;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio - Jose Antonio Marchante</title>
+<style>
+  body {
+    font-family: 'Fira Code', monospace;
+    background-color: #f4f4f9;
+    color: #1a1a1a;
+    margin: 0;
+    padding: 0 2rem;
+    line-height: 1.6;
+  }
+  h1 {
+    text-align: center;
+    margin-top: 1rem;
+    color: #0d3b66;
+  }
+  h2 {
+    color: #0d3b66;
+    border-bottom: 2px solid #0d3b66;
+    padding-bottom: 0.3rem;
+    margin-top: 2rem;
+  }
+  pre {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+  code {
+    font-family: 'Fira Code', monospace;
+  }
+  .concept {
+    margin-bottom: 2rem;
+  }
+  .explicacion {
+    background-color: #e0f7fa;
+    padding: 0.8rem 1rem;
+    border-left: 4px solid #00796b;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+  }
+  ul {
+    margin-top: 0.5rem;
+    margin-left: 1.5rem;
+  }
+</style>
 </head>
-
 <body>
+<h1>Portfolio - Jose Antonio Marchante</h1>
 
-    <h1>Portfolio de Programación</h1>
-    <p>Este sitio recopila y organiza el trabajo realizado en la unidad didáctica: teoría, ejercicios y evidencias prácticas.</p>
+<div class="concept">
+  <h2>1. Clases y Objetos</h2>
+  <p>Las clases son **plantillas** para crear objetos y permiten definir atributos y comportamientos comunes. Los objetos son instancias concretas de estas clases.</p>
+  <ul>
+    <li>Las clases permiten reutilizar código.</li>
+    <li>Los objetos almacenan datos específicos.</li>
+    <li>Facilitan la programación modular y orientada a objetos.</li>
+  </ul>
+  <pre><code class="language-java">
+// Clase Persona
+public class Persona {
+    private String nombre;
+    private int edad;
 
-    <h2>Acceso al Portfolio Completo</h2>
-    <p>La presentación completa, reflexiones y contenidos teóricos están en Google Sites:</p>
+    // Constructor por defecto
+    public Persona() {
+        this.nombre = "Anónimo";
+        this.edad = 18;
+    }
+
+    // Constructor con parámetros
+    public Persona(String nombre, int edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+
+    // Getters y setters
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+    public int getEdad() { return edad; }
+    public void setEdad(int edad) { if (edad>=0) this.edad = edad; }
+
+    @Override
+    public String toString() {
+        return "Hola, soy " + nombre + " y tengo " + edad + " años.";
+    }
+}
+
+// Uso de la clase
+Persona p1 = new Persona("Jose", 22);
+System.out.println(p1);
+  </code></pre>
+  <div class="explicacion">
+    <p>La encapsulación protege los atributos de la modificación directa. Los getters y setters permiten controlar y validar los valores.</p>
+  </div>
+</div>
+
+<div class="concept">
+  <h2>2. Constructores y Sobrecarga</h2>
+  <p>Los constructores inicializan los objetos. La sobrecarga permite tener varios constructores con distintos parámetros.</p>
+  <pre><code class="language-java">
+public class Libro {
+    private String titulo;
+    private String autor;
+    private int paginas;
+
+    // Constructor básico
+    public Libro() {
+        this.titulo = "Desconocido";
+        this.autor = "Desconocido";
+        this.paginas = 0;
+    }
+
+    // Constructor sobrecargado
+    public Libro(String titulo, String autor) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.paginas = 100; // valor por defecto
+    }
+
+    // Constructor completo
+    public Libro(String titulo, String autor, int paginas) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.paginas = paginas;
+    }
+}
+
+// Uso
+Libro l1 = new Libro();
+Libro l2 = new Libro("1984", "George Orwell");
+Libro l3 = new Libro("El Quijote", "Cervantes", 863);
+  </code></pre>
+  <div class="explicacion">
+    <p>La sobrecarga de constructores permite flexibilidad en la creación de objetos, según la información disponible.</p>
+  </div>
+</div>
+
+<div class="concept">
+  <h2>3. Encapsulación</h2>
+  <p>Consiste en proteger los atributos usando <code>private</code> y controlar el acceso mediante métodos públicos.</p>
+  <pre><code class="language-java">
+class CuentaBancaria {
+    private double saldo;
+
+    public CuentaBancaria(double saldoInicial) {
+        this.saldo = saldoInicial;
+    }
+
+    public double getSaldo() { return saldo; }
+
+    public void depositar(double cantidad) {
+        if(cantidad>0) saldo += cantidad;
+    }
+
+    public void retirar(double cantidad) {
+        if(cantidad>0 && cantidad <= saldo) saldo -= cantidad;
+    }
+}
+
+// Uso
+CuentaBancaria c = new CuentaBancaria(500);
+c.depositar(200);
+c.retirar(100);
+System.out.println(c.getSaldo()); // 600
+  </code></pre>
+  <div class="explicacion">
+    <p>La encapsulación asegura que los cambios en los atributos ocurran solo a través de métodos controlados, evitando errores y manteniendo integridad de datos.</p>
+  </div>
+</div>
+
+<div class="concept">
+  <h2>4. Enumerados (Enums)</h2>
+  <p>Los enumerados definen un conjunto limitado de valores posibles. Son útiles para opciones fijas como días, géneros, estados, etc.</p>
+  <pre><code class="language-java">
+// Enumerado Día de la semana
+public enum Dia { LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO, DOMINGO; }
+
+// Uso en clase
+class Evento {
+    private String nombre;
+    private Dia dia;
+
+    public Evento(String nombre, Dia dia) {
+        this.nombre = nombre;
+        this.dia = dia;
+    }
+}
+
+// Ejemplo
+Evento e1 = new Evento("Clase de Java", Dia.LUNES);
+Evento e2 = new Evento("Concierto", Dia.VIERNES);
+  </code></pre>
+  <div class="explicacion">
+    <p>Los enums evitan asignaciones inválidas y hacen el código más legible y seguro.</p>
+  </div>
+</div>
+
+<div class="concept">
+  <h2>5. Métodos y Atributos Estáticos</h2>
+  <p>Los elementos estáticos pertenecen a la clase en lugar de a los objetos individuales. Se usan para constantes, contadores o utilidades.</p>
+  <pre><code class="language-java">
+// Contador de objetos
+class Contador {
+    private static int total = 0;
+
+    public Contador() { total++; }
+
+    public static void mostrarTotal() {
+        System.out.println("Objetos creados: " + total);
+    }
+}
+
+// Uso
+new Contador();
+new Contador();
+Contador.mostrarTotal(); // Objetos creados: 2
+  </code></pre>
+  <div class="explicacion">
+    <p>Los métodos y atributos estáticos permiten acceder a información común sin instanciar la clase.</p>
+  </div>
+</div>
+
+<div class="concept">
+  <h2>6. Herencia</h2>
+  <p>La herencia permite crear clases que reutilizan atributos y métodos de otra clase.</p>
+  <pre><code class="language-java">
+// Clase base
+class Vehiculo {
+    protected String marca;
+    public Vehiculo(String marca) { this.marca = marca; }
+    public void mostrarMarca() { System.out.println("Marca: " + marca); }
+}
+
+// Clase derivada
+class Coche extends Vehiculo {
+    private int puertas;
+    public Coche(String marca, int puertas) { super(marca); this.puertas = puertas; }
+    public void mostrarPuertas() { System.out.println("Puertas: " + puertas); }
+}
+
+// Uso
+Coche c = new Coche("Toyota", 4);
+c.mostrarMarca();
+c.mostrarPuertas();
+  </code></pre>
+  <div class="explicacion">
+    <p>La herencia reduce duplicación de código y permite especializar clases según necesidades.</p>
+  </div>
+</div>
+
+<div class="concept">
+  <h2>7. Polimorfismo</h2>
+  <p>El polimorfismo permite que un objeto se comporte de distintas formas según su tipo real en tiempo de ejecución.</p>
+  <pre><code class="language-java">
+abstract class Animal {
+    public abstract void sonido();
+}
+
+class Perro extends Animal {
+    @Override
+    public void sonido() { System.out.println("Guau"); }
+}
+
+class Gato extends Animal {
+    @Override
+    public void sonido() { System.out.println("Miau"); }
+}
+
+// Uso polimórfico
+Animal a1 = new Perro();
+Animal a2 = new Gato();
+a1.sonido(); // Guau
+a2.sonido(); // Miau
+  </code></pre>
+  <div class="explicacion">
+    <p>El polimorfismo permite escribir código más flexible y extensible.</p>
+  </div>
+</div>
+
+<div class="concept">
+  <h2>8. Composición</h2>
+  <p>La composición indica que una clase contiene objetos de otras clases, formando relaciones de tipo “tiene un”.</p>
+  <pre><code class="language-java">
+class Motor {
+    private int caballos;
+    public Motor(int caballos) { this.caballos = caballos; }
+    public int getCaballos() { return caballos; }
+}
+
+class Coche {
+    private String modelo;
+    private Motor motor;
+    public Coche(String modelo, Motor motor) { this.modelo = modelo; this.motor = motor; }
+    public void mostrarInfo() {
+        System.out.println("Modelo: " + modelo + ", Motor: " + motor.getCaballos() + " CV");
+    }
+}
+
+// Uso
+Motor m = new Motor(120);
+Coche c = new Coche("Honda", m);
+c.mostrarInfo();
+  </code></pre>
+  <div class="explicacion">
+    <p>La composición permite reutilizar clases y crear relaciones claras entre objetos.</p>
+  </div>
+</div>
+
+<div class="concept">
+  <h2>9. Interfaces</h2>
+  <p>Las interfaces definen un contrato que las clases deben cumplir, sin implementar lógica. Permiten polimorfismo y desacoplamiento.</p>
+  <pre><code class="language-java">
+interface Volador {
+    void volar();
+}
+
+class Pajaro implements Volador {
+    @Override
+    public void volar() { System.out.println("El pájaro vuela"); }
+}
+
+class Avion implements Volador {
+    @Override
+    public void volar() { System.out.println("El avión vuela"); }
+}
+
+// Uso
+Volador v1 = new Pajaro();
+Volador v2 = new Avion();
+v1.volar(); // El pájaro vuela
+v2.volar(); // El avión vuela
+  </code></pre>
+  <div class="explicacion">
+    <p>Las interfaces permiten que distintos tipos de objetos compartan métodos comunes, mejorando flexibilidad y mantenimiento.</p>
+  </div>
+</div>
+
+<div class="concept">
+  <h2>10. Final, equals(), hashCode() y toString()</h2>
+  <p>Estos elementos son esenciales para control de clases, comparación de objetos y representación textual.</p>
+  <pre><code class="language-java">
+final class Constantes {
+    public static final double PI = 3.1416;
+}
+
+class Persona {
+    private String nombre;
+    private int edad;
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this==obj) return true;
+        if(!(obj instanceof Persona)) return false;
+        Persona p = (Persona) obj;
+        return nombre.equals(p.nombre) && edad==p.edad;
+    }
+
+    @Override
+    public int hashCode() {
+        return nombre.hashCode() + edad;
+    }
+
+    @Override
+    public String toString() {
+        return nombre + ", " + edad + " años";
+    }
+}
+
+// Uso
+Persona p1 = new Persona();
+Persona p2 = new Persona();
+System.out.println(p1.equals(p2));
+System.out.println(p1.hashCode());
+System.out.println(p1);
+  </code></pre>
+  <div class="explicacion">
     <ul>
-        <li>
-            <a href="https://sites.google.com/g.educaand.es/miblogdeprogramacion?usp=sharing" target="_blank">
-                Portfolio en Google Sites
-            </a>
-        </li>
+      <li><code>final</code>: protege clases, métodos o variables.</li>
+      <li><code>equals()</code>: compara objetos por contenido.</li>
+      <li><code>hashCode()</code>: asegura que objetos sean manejables en colecciones.</li>
+      <li><code>toString()</code>: define la representación textual del objeto.</li>
     </ul>
+  </div>
+</div>
 
-    <h2>Ejercicios de Programación</h2>
-    <ul>
-        <li><a href="https://github.com/joseliitoo32/PROG/tree/master" target="_blank">Repositorio de Ejercicios en GitHub</a></li>
-    </ul>
+<div class="concept">
+  <h2>11. Paquetes y Librerías</h2>
+  <p>Los paquetes organizan clases en directorios lógicos y las librerías permiten reutilizar código existente.</p>
+  <pre><code class="language-java">
+// Declaración de paquete
+package misclases.utilidades;
 
+// Importar librerías
+import java.util.ArrayList;
+import java.util.Scanner;
 
-    <footer>
-        Portfolio de Jose Antonio Marchante — 1º DAW
-    </footer>
+// Uso
+ArrayList<String> lista = new ArrayList<>();
+Scanner sc = new Scanner(System.in);
+  </code></pre>
+  <div class="explicacion">
+    <p>Paquetes y librerías permiten mantener código organizado y reutilizable, evitando duplicación y errores.</p>
+  </div>
+</div>
 
 </body>
 </html>
