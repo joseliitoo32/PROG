@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Java – 1º DAW Programación</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">☕</span>
+        <span class="logo-text">Java Portfolio</span>
+      </div>
+      <nav id="main-nav">
+        <a href="#ud4">UD4 · Clases</a>
+        <a href="#ud5">UD5 · POO</a>
+        <a href="#ud6">UD6 · Interfaces</a>
+        <a href="#ud7">UD7 · Excepciones</a>
+        <a href="#ud8">UD8 · TAD/JCF</a>
+        <a href="#ud9">UD9 · I/O</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Portfolio de Programación en Java</h1>
+      <p class="hero-sub">Módulo de Programación · 1º DAW · Autor: Fran Gómez · 2025/2026</p>
+      <p class="hero-desc">Referencia completa de los conceptos, sintaxis y ejemplos de Java estudiados a lo largo del curso, desde los fundamentos de la POO hasta la gestión de ficheros y XML.</p>
+      <div class="hero-badges">
+        <span class="badge badge-blue">Java 17+</span>
+        <span class="badge badge-green">POO</span>
+        <span class="badge badge-orange">1º DAW</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main>
+
+    <!-- ============================================================ -->
+    <!-- UD4: CLASES Y OBJETOS                                        -->
+    <!-- ============================================================ -->
+    <section id="ud4" class="unit">
+      <div class="unit-header">
+        <span class="unit-number">UD 4</span>
+        <h2>Clases y Objetos</h2>
+        <p>La POO es un paradigma de programación que trata de modelar de manera abstracta el mundo real. Una <strong>clase</strong> es una plantilla que define propiedades (atributos) y comportamientos (métodos). Un <strong>objeto</strong> es una instancia concreta de esa clase.</p>
+      </div>
+
+      <!-- 4.1 Concepto de Clase -->
+      <article class="topic">
+        <h3>4.1 Concepto de Clase</h3>
+        <p>Una clase actúa como un tipo de dato personalizado que combina datos y código. Sus elementos principales son los <strong>atributos</strong> (el estado) y los <strong>métodos</strong> (el comportamiento). El nombre de una clase sigue la convención <em>UpperCamelCase</em>.</p>
+        <div class="info-table">
+          <table>
+            <thead><tr><th>Elemento</th><th>Descripción</th><th>Convención de nombre</th></tr></thead>
+            <tbody>
+              <tr><td>Atributo</td><td>Variable que almacena el estado del objeto</td><td>lowerCamelCase (sustantivo)</td></tr>
+              <tr><td>Método</td><td>Función que define el comportamiento</td><td>lowerCamelCase (verbo)</td></tr>
+              <tr><td>Clase</td><td>Plantilla que define el tipo</td><td>UpperCamelCase</td></tr>
+              <tr><td>Constructor</td><td>Método especial para crear objetos</td><td>Mismo nombre que la clase</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">Persona.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="kw">public class</span> <span class="cls">Persona</span> {
+    <span class="cmt">// Atributos (estado del objeto)</span>
+    <span class="kw">private</span> <span class="tp">String</span> nombre;
+    <span class="kw">private</span> <span class="tp">int</span>    edad;
+    <span class="kw">private</span> <span class="tp">double</span> estatura;
+
+    <span class="cmt">// Método (comportamiento)</span>
+    <span class="kw">public void</span> <span class="fn">cumplirAnios</span>() {
+        edad++;
+    }
+
+    <span class="kw">public void</span> <span class="fn">crecer</span>(<span class="tp">double</span> incremento) {
+        estatura += incremento;
+    }
+}</code></pre>
+        </div>
+      </article>
+
+      <!-- 4.2 Atributos -->
+      <article class="topic">
+        <h3>4.2 Atributos</h3>
+        <p>Los atributos almacenan el estado de una clase. Se declaran al principio de la clase y no es obligatorio inicializarlos (Java los inicializa a sus valores por defecto). La visibilidad recomendada es <code>private</code>.</p>
+        <div class="info-table">
+          <table>
+            <thead><tr><th>Tipo</th><th>Valor por defecto</th><th>Ejemplo</th></tr></thead>
+            <tbody>
+              <tr><td>int, byte, short, long</td><td>0</td><td><code>private int edad;</code></td></tr>
+              <tr><td>float, double</td><td>0.0</td><td><code>private double saldo;</code></td></tr>
+              <tr><td>boolean</td><td>false</td><td><code>private boolean activo;</code></td></tr>
+              <tr><td>char</td><td>'\u0000'</td><td><code>private char inicial;</code></td></tr>
+              <tr><td>Objeto (String, etc.)</td><td>null</td><td><code>private String nombre;</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>La sintaxis completa de declaración de un atributo es:</p>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">Atributos.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="cmt">// [visibilidad] [static] [final] tipo nombre [= valorInicial];</span>
+
+<span class="kw">private</span>        <span class="tp">String</span>  nombre;          <span class="cmt">// atributo de instancia</span>
+<span class="kw">private static</span> <span class="tp">int</span>     totalObjetos = 0; <span class="cmt">// atributo de clase (compartido)</span>
+<span class="kw">public  static final</span> <span class="tp">double</span> PI = 3.14159; <span class="cmt">// constante de clase</span></code></pre>
+        </div>
+      </article>
+
+      <!-- 4.3 Métodos -->
+      <article class="topic">
+        <h3>4.3 Métodos</h3>
+        <p>Los métodos son funciones definidas dentro de una clase. Sus nombres suelen contener un verbo. La sintaxis de declaración es: <code>[visibilidad] [static] tipoRetorno nombreMétodo(parámetros)</code>.</p>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">Calculadora.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="kw">public class</span> <span class="cls">Calculadora</span> {
+
+    <span class="cmt">// Método que devuelve un valor</span>
+    <span class="kw">public static int</span> <span class="fn">sumar</span>(<span class="tp">int</span> a, <span class="tp">int</span> b) {
+        <span class="kw">return</span> a + b;
+    }
+
+    <span class="cmt">// Procedimiento (no devuelve nada)</span>
+    <span class="kw">public static void</span> <span class="fn">imprimirResultado</span>(<span class="tp">int</span> resultado) {
+        System.out.println(<span class="str">"Resultado: "</span> + resultado);
+    }
+
+    <span class="kw">public static void</span> <span class="fn">main</span>(<span class="tp">String</span>[] args) {
+        <span class="tp">int</span> res = sumar(<span class="num">5</span>, <span class="num">10</span>); <span class="cmt">// res = 15</span>
+        imprimirResultado(res);
+    }
+}</code></pre>
+        </div>
+      </article>
+
+      <!-- 4.4 Constructores -->
+      <article class="topic">
+        <h3>4.4 Constructores</h3>
+        <p>Los constructores son métodos especiales que se invocan al crear un objeto con <code>new</code>. Tienen el mismo nombre que la clase y no tienen tipo de retorno. Si no se declara ninguno, Java proporciona un <strong>constructor por defecto</strong> (sin parámetros). En el momento en que se declara alguno, el constructor por defecto desaparece.</p>
+        <div class="info-table">
+          <table>
+            <thead><tr><th>Tipo de constructor</th><th>Descripción</th></tr></thead>
+            <tbody>
+              <tr><td>Por defecto</td><td>Proporcionado por Java si no se declara ninguno. Inicializa atributos a sus valores por defecto.</td></tr>
+              <tr><td>Sin parámetros</td><td>Declarado explícitamente sin parámetros. Permite inicializar con valores predefinidos.</td></tr>
+              <tr><td>Con parámetros</td><td>Recibe valores para inicializar los atributos en la creación del objeto.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">Persona.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="kw">public class</span> <span class="cls">Persona</span> {
+    <span class="kw">private</span> <span class="tp">String</span> nombre;
+    <span class="kw">private</span> <span class="tp">int</span>    edad;
+    <span class="kw">private</span> <span class="tp">double</span> estatura;
+
+    <span class="cmt">// Constructor sin parámetros</span>
+    <span class="kw">public</span> <span class="fn">Persona</span>() {
+        nombre   = <span class="str">"anónimo"</span>;
+        edad     = <span class="num">18</span>;
+        estatura = <span class="num">1.70</span>;
+    }
+
+    <span class="cmt">// Constructor con todos los parámetros</span>
+    <span class="kw">public</span> <span class="fn">Persona</span>(<span class="tp">String</span> nombre, <span class="tp">int</span> edad, <span class="tp">double</span> estatura) {
+        <span class="kw">this</span>.nombre   = nombre;
+        <span class="kw">this</span>.edad     = edad;
+        <span class="kw">this</span>.estatura = estatura;
+    }
+
+    <span class="cmt">// Constructor con nombre únicamente (reutiliza el anterior con this())</span>
+    <span class="kw">public</span> <span class="fn">Persona</span>(<span class="tp">String</span> nombre) {
+        <span class="kw">this</span>(nombre, <span class="num">18</span>, <span class="num">1.70</span>); <span class="cmt">// this() debe ir al principio</span>
+    }
+}
+
+<span class="cmt">// Uso en otra clase:</span>
+<span class="cls">Persona</span> p1 = <span class="kw">new</span> <span class="cls">Persona</span>();
+<span class="cls">Persona</span> p2 = <span class="kw">new</span> <span class="cls">Persona</span>(<span class="str">"Ana"</span>, <span class="num">25</span>, <span class="num">1.65</span>);
+<span class="cls">Persona</span> p3 = <span class="kw">new</span> <span class="cls">Persona</span>(<span class="str">"Luis"</span>);</code></pre>
+        </div>
+      </article>
+
+      <!-- 4.5 Operador this y ámbito -->
+      <article class="topic">
+        <h3>4.5 Referencia <code>this</code> y Ámbito de Variables</h3>
+        <p>La palabra reservada <code>this</code> hace referencia al propio objeto. Se usa principalmente para distinguir entre atributos de la clase y variables locales con el mismo nombre, y para invocar otros constructores con <code>this()</code>.</p>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">UsoThis.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="kw">public class</span> <span class="cls">Persona</span> {
+    <span class="kw">private</span> <span class="tp">String</span> nombre; <span class="cmt">// atributo de clase</span>
+
+    <span class="kw">public void</span> <span class="fn">setNombre</span>(<span class="tp">String</span> nombre) { <span class="cmt">// parámetro local</span>
+        <span class="kw">this</span>.nombre = nombre; <span class="cmt">// this.nombre → atributo; nombre → parámetro</span>
+    }
+}</code></pre>
+        </div>
+      </article>
+
+      <!-- 4.6 Referencias y null -->
+      <article class="topic">
+        <h3>4.6 Referencias, Operador <code>.</code> y <code>null</code></h3>
+        <p>Los objetos en Java se acceden mediante <strong>referencias</strong> (punteros a memoria), igual que los arrays. Para acceder a los miembros de un objeto se usa el operador punto <code>.</code>. Si una variable de tipo objeto no apunta a ningún objeto, su valor es <code>null</code>; intentar usar un objeto nulo produce una <code>NullPointerException</code>.</p>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">Referencias.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="cls">Persona</span> p1 = <span class="kw">new</span> <span class="cls">Persona</span>(<span class="str">"Ana"</span>, <span class="num">20</span>, <span class="num">1.65</span>);
+<span class="cls">Persona</span> p2 = p1; <span class="cmt">// p2 apunta al MISMO objeto que p1</span>
+
+p2.setNombre(<span class="str">"Lucía"</span>);
+System.out.println(p1.getNombre()); <span class="cmt">// Imprime: Lucía (mismo objeto)</span>
+
+<span class="cls">Persona</span> p3 = <span class="kw">null</span>;
+<span class="cmt">// p3.getNombre(); → NullPointerException !</span></code></pre>
+        </div>
+      </article>
+
+      <!-- 4.7 Enumerados -->
+      <article class="topic">
+        <h3>4.7 Enumerados (<code>enum</code>)</h3>
+        <p>Los enumerados son tipos de dato especiales que limitan los valores posibles a un conjunto predefinido de constantes. Son útiles para representar categorías fijas como días de la semana, estados o géneros.</p>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">Sexo.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="kw">public enum</span> <span class="cls">Sexo</span> {
+    HOMBRE, MUJER, NO_BINARIO
+}
+
+<span class="cmt">// Uso en la clase Persona:</span>
+<span class="kw">private</span> <span class="cls">Sexo</span> sexo;
+
+<span class="cls">Persona</span> p = <span class="kw">new</span> <span class="cls">Persona</span>();
+p.setSexo(<span class="cls">Sexo</span>.MUJER);
+System.out.println(p.getSexo()); <span class="cmt">// MUJER</span></code></pre>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UD5: PRINCIPIOS DE LA POO                                    -->
+    <!-- ============================================================ -->
+    <section id="ud5" class="unit">
+      <div class="unit-header">
+        <span class="unit-number">UD 5</span>
+        <h2>Principios de la POO</h2>
+        <p>La Programación Orientada a Objetos se basa en cuatro pilares fundamentales: <strong>Encapsulación</strong>, <strong>Herencia</strong>, <strong>Polimorfismo</strong> y <strong>Abstracción</strong>. Esta unidad profundiza en cada uno de ellos aplicados a Java.</p>
+      </div>
+
+      <!-- 5.1 Encapsulación -->
+      <article class="topic">
+        <h3>5.1 Encapsulación y Visibilidad</h3>
+        <p>La encapsulación consiste en ocultar los datos internos de una clase y controlar el acceso mediante métodos. Esto protege el estado del objeto y evita usos incorrectos. Los atributos se declaran <code>private</code> y se accede a ellos mediante métodos <strong>getter</strong> (lectura) y <strong>setter</strong> (escritura).</p>
+        <div class="info-table">
+          <table>
+            <thead><tr><th>Modificador</th><th>Misma clase</th><th>Mismo paquete</th><th>Subclase</th><th>Cualquier clase</th></tr></thead>
+            <tbody>
+              <tr><td><code>private</code></td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
+              <tr><td><code>package</code> (defecto)</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td></tr>
+              <tr><td><code>protected</code></td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
+              <tr><td><code>public</code></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">CuentaBancaria.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="kw">public class</span> <span class="cls">CuentaBancaria</span> {
+    <span class="kw">private</span> <span class="tp">String</span> titular;
+    <span class="kw">private</span> <span class="tp">double</span> saldo;
+
+    <span class="cmt">// Getter</span>
+    <span class="kw">public</span> <span class="tp">String</span> <span class="fn">getTitular</span>() { <span class="kw">return</span> titular; }
+    <span class="kw">public</span> <span class="tp">double</span> <span class="fn">getSaldo</span>()   { <span class="kw">return</span> saldo; }
+
+    <span class="cmt">// Setter con validación</span>
+    <span class="kw">public void</span> <span class="fn">ingresar</span>(<span class="tp">double</span> cantidad) {
+        <span class="kw">if</span> (cantidad > <span class="num">0</span>) saldo += cantidad;
+    }
+
+    <span class="kw">public void</span> <span class="fn">retirar</span>(<span class="tp">double</span> cantidad) {
+        <span class="kw">if</span> (cantidad > <span class="num">0</span> && cantidad <= saldo) saldo -= cantidad;
+    }
+}</code></pre>
+        </div>
+      </article>
+
+      <!-- 5.2 Static -->
+      <article class="topic">
+        <h3>5.2 Atributos y Métodos Estáticos (<code>static</code>)</h3>
+        <p>Los miembros estáticos pertenecen a la <strong>clase</strong>, no a los objetos. Son compartidos por todas las instancias. Los métodos estáticos no necesitan un objeto para ejecutarse, pero <strong>no pueden acceder directamente a miembros no estáticos</strong>. El método <code>main</code> es estático porque la JVM lo invoca sin crear ningún objeto.</p>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">ContadorObjetos.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="kw">public class</span> <span class="cls">ContadorObjetos</span> {
+    <span class="kw">private static int</span> totalObjetos = <span class="num">0</span>; <span class="cmt">// atributo de clase</span>
+    <span class="kw">private</span> <span class="tp">String</span> nombre;
+
+    <span class="kw">public</span> <span class="fn">ContadorObjetos</span>(<span class="tp">String</span> nombre) {
+        <span class="kw">this</span>.nombre = nombre;
+        totalObjetos++; <span class="cmt">// se incrementa con cada new</span>
+    }
+
+    <span class="kw">public static void</span> <span class="fn">mostrarTotal</span>() {
+        System.out.println(<span class="str">"Total objetos: "</span> + totalObjetos);
+    }
+}
+
+<span class="cmt">// Uso:</span>
+<span class="kw">new</span> <span class="cls">ContadorObjetos</span>(<span class="str">"A"</span>);
+<span class="kw">new</span> <span class="cls">ContadorObjetos</span>(<span class="str">"B"</span>);
+<span class="cls">ContadorObjetos</span>.mostrarTotal(); <span class="cmt">// Total objetos: 2</span></code></pre>
+        </div>
+      </article>
+
+      <!-- 5.3 Paquetes y Librerías -->
+      <article class="topic">
+        <h3>5.3 Paquetes y Librerías</h3>
+        <p>Los paquetes organizan las clases en namespaces jerárquicos (como carpetas). Para usar una clase de otro paquete se importa con <code>import</code>. Una <strong>librería</strong> (o biblioteca) es código ya desarrollado que se reutiliza para no reinventar la rueda. En Java, las librerías se distribuyen como archivos <code>.jar</code>.</p>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">Main.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="kw">package</span> app;                    <span class="cmt">// declara el paquete</span>
+<span class="kw">import</span> modelo.Persona;          <span class="cmt">// importa una clase</span>
+<span class="kw">import</span> java.util.*;             <span class="cmt">// importa todo el paquete java.util</span>
+
+<span class="cmt">// java.lang se importa automáticamente (String, Math, System, etc.)</span>
+<span class="kw">public class</span> <span class="cls">Main</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(<span class="tp">String</span>[] args) {
+        <span class="cls">Persona</span> p = <span class="kw">new</span> <span class="cls">Persona</span>(<span class="str">"Ana"</span>);
+        System.out.println(p);
+    }
+}</code></pre>
+        </div>
+      </article>
+
+      <!-- 5.4 Herencia -->
+      <article class="topic">
+        <h3>5.4 Herencia</h3>
+        <p>La herencia permite crear una clase nueva a partir de otra existente, reutilizando su código y ampliándolo. La relación es de tipo <em>"es un"</em> (p. ej., <em>Alumno es una Persona</em>). En Java se usa la palabra clave <code>extends</code>. <strong>No existe herencia múltiple</strong> en Java (una clase solo puede extender una), pero sí herencia transitiva. Todos los miembros de la superclase (excepto constructores) son heredados por la subclase.</p>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">Herencia.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="kw">public class</span> <span class="cls">Animal</span> {
+    <span class="kw">protected</span> <span class="tp">String</span> nombre;
+
+    <span class="kw">public</span> <span class="fn">Animal</span>(<span class="tp">String</span> nombre) {
+        <span class="kw">this</span>.nombre = nombre;
+    }
+
+    <span class="kw">public void</span> <span class="fn">dormir</span>() {
+        System.out.println(nombre + <span class="str">" está durmiendo."</span>);
+    }
+}
+
+<span class="kw">public class</span> <span class="cls">Perro</span> <span class="kw">extends</span> <span class="cls">Animal</span> {
+
+    <span class="kw">public</span> <span class="fn">Perro</span>(<span class="tp">String</span> nombre) {
+        <span class="kw">super</span>(nombre); <span class="cmt">// invoca al constructor del padre</span>
+    }
+
+    <span class="cmt">// Sobreescritura con @Override</span>
+    <span class="ann">@Override</span>
+    <span class="kw">public void</span> <span class="fn">dormir</span>() {
+        <span class="kw">super</span>.dormir();  <span class="cmt">// reutiliza el método del padre</span>
+        System.out.println(<span class="str">"(ronca)"</span>);
+    }
+
+    <span class="kw">public void</span> <span class="fn">ladrar</span>() {
+        System.out.println(<span class="str">"¡Guau!"</span>);
+    }
+}</code></pre>
+        </div>
+      </article>
+
+      <!-- 5.5 Polimorfismo -->
+      <article class="topic">
+        <h3>5.5 Polimorfismo</h3>
+        <p>El polimorfismo permite que una misma referencia se comporte de distintas formas según el objeto concreto al que apunte. Una variable de tipo clase padre puede referenciar objetos de clases hijas. El método que se ejecuta se decide en <strong>tiempo de ejecución</strong>, no en compilación.</p>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">Polimorfismo.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="cls">Animal</span> a1 = <span class="kw">new</span> <span class="cls">Perro</span>(<span class="str">"Rex"</span>);
+<span class="cls">Animal</span> a2 = <span class="kw">new</span> <span class="cls">Gato</span>(<span class="str">"Misi"</span>);
+
+<span class="cmt">// Aunque a1 y a2 son de tipo Animal,</span>
+<span class="cmt">// Java ejecuta el método del tipo REAL del objeto</span>
+a1.hacerSonido(); <span class="cmt">// → Guau!</span>
+a2.hacerSonido(); <span class="cmt">// → Miau!</span>
+
+<span class="cmt">// Array polimórfico</span>
+<span class="cls">Animal</span>[] animales = { <span class="kw">new</span> <span class="cls">Perro</span>(<span class="str">"Rex"</span>), <span class="kw">new</span> <span class="cls">Gato</span>(<span class="str">"Misi"</span>) };
+<span class="kw">for</span> (<span class="cls">Animal</span> a : animales) {
+    a.hacerSonido(); <span class="cmt">// comportamiento según tipo real</span>
+}</code></pre>
+        </div>
+      </article>
+
+      <!-- 5.6 Clase Object -->
+      <article class="topic">
+        <h3>5.6 La Clase <code>Object</code></h3>
+        <p><code>Object</code> es la superclase base de todas las clases en Java. Toda clase hereda implícitamente de ella. Proporciona métodos esenciales que conviene sobrescribir en clases propias.</p>
+        <div class="info-table">
+          <table>
+            <thead><tr><th>Método</th><th>Descripción</th><th>¿Sobrescribir?</th></tr></thead>
+            <tbody>
+              <tr><td><code>toString()</code></td><td>Representación textual del objeto</td><td>Sí, siempre</td></tr>
+              <tr><td><code>equals(Object obj)</code></td><td>Compara contenido (no referencia)</td><td>Sí, si se necesita comparar por valor</td></tr>
+              <tr><td><code>hashCode()</code></td><td>Código hash del objeto</td><td>Sí, junto con equals()</td></tr>
+              <tr><td><code>getClass()</code></td><td>Devuelve la clase del objeto</td><td>No</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">PersonaConObject.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="kw">public class</span> <span class="cls">Persona</span> {
+    <span class="kw">private</span> <span class="tp">String</span> nombre;
+    <span class="kw">private</span> <span class="tp">int</span>    edad;
+
+    <span class="ann">@Override</span>
+    <span class="kw">public</span> <span class="tp">String</span> <span class="fn">toString</span>() {
+        <span class="kw">return</span> <span class="str">"Persona: "</span> + nombre + <span class="str">", Edad: "</span> + edad;
+    }
+
+    <span class="ann">@Override</span>
+    <span class="kw">public boolean</span> <span class="fn">equals</span>(<span class="tp">Object</span> obj) {
+        <span class="kw">if</span> (<span class="kw">this</span> == obj) <span class="kw">return true</span>;
+        <span class="kw">if</span> (!(obj <span class="kw">instanceof</span> <span class="cls">Persona</span>)) <span class="kw">return false</span>;
+        <span class="cls">Persona</span> otra = (<span class="cls">Persona</span>) obj;
+        <span class="kw">return</span> edad == otra.edad && nombre.equals(otra.nombre);
+    }
+}
+
+<span class="cmt">// Uso:</span>
+<span class="cls">Persona</span> p = <span class="kw">new</span> <span class="cls">Persona</span>(<span class="str">"Fran"</span>, <span class="num">30</span>);
+System.out.println(p);             <span class="cmt">// Persona: Fran, Edad: 30</span>
+System.out.println(<span class="str">"Info: "</span> + p); <span class="cmt">// toString() implícito</span></code></pre>
+        </div>
+      </article>
+
+      <!-- 5.7 Clases y Métodos Abstractos -->
+      <article class="topic">
+        <h3>5.7 Clases y Métodos Abstractos</h3>
+        <p>Una <strong>clase abstracta</strong> no puede ser instanciada directamente; sirve como base para otras clases. Un <strong>método abstracto</strong> se declara sin implementación y obliga a las subclases concretas a implementarlo. Si una clase tiene al menos un método abstracto, debe ser declarada abstracta.</p>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">Abstracto.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="kw">abstract class</span> <span class="cls">Figura</span> {
+    <span class="cmt">// Método abstracto: sin cuerpo, termina en ;</span>
+    <span class="kw">public abstract double</span> <span class="fn">calcularArea</span>();
+
+    <span class="cmt">// Método concreto (con implementación)</span>
+    <span class="kw">public void</span> <span class="fn">mostrarTipo</span>() {
+        System.out.println(<span class="str">"Soy una figura geométrica."</span>);
+    }
+}
+
+<span class="kw">class</span> <span class="cls">Circulo</span> <span class="kw">extends</span> <span class="cls">Figura</span> {
+    <span class="kw">private double</span> radio;
+
+    <span class="kw">public</span> <span class="fn">Circulo</span>(<span class="tp">double</span> radio) { <span class="kw">this</span>.radio = radio; }
+
+    <span class="ann">@Override</span>
+    <span class="kw">public double</span> <span class="fn">calcularArea</span>() {
+        <span class="kw">return</span> Math.PI * radio * radio;
+    }
+}
+
+<span class="cmt">// Figura f = new Figura(); → ERROR: no se puede instanciar</span>
+<span class="cls">Figura</span> f = <span class="kw">new</span> <span class="cls">Circulo</span>(<span class="num">5.0</span>); <span class="cmt">// polimorfismo</span>
+System.out.println(f.calcularArea());</code></pre>
+        </div>
+      </article>
+
+      <!-- 5.8 Final -->
+      <article class="topic">
+        <h3>5.8 Modificador <code>final</code></h3>
+        <p>El modificador <code>final</code> tiene diferentes efectos según donde se aplique: en una <strong>variable</strong> impide reasignarla (constante); en un <strong>método</strong> impide que sea sobrescrito; en una <strong>clase</strong> impide que sea extendida.</p>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">Final.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="cmt">// Variable final → constante</span>
+<span class="kw">final double</span> PI = <span class="num">3.14159</span>;
+<span class="cmt">// PI = 3.0; → ERROR de compilación</span>
+
+<span class="cmt">// Método final → no puede sobrescribirse</span>
+<span class="kw">public final void</span> <span class="fn">display</span>() {
+    System.out.println(<span class="str">"Método final."</span>);
+}
+
+<span class="cmt">// Clase final → no puede heredarse (ej: String, Math)</span>
+<span class="kw">public final class</span> <span class="cls">MiClaseFinal</span> { ... }
+
+<span class="cmt">// OJO: final en objeto → no se puede reasignar la referencia,</span>
+<span class="cmt">// pero SÍ modificar el contenido del objeto</span>
+<span class="kw">final</span> <span class="cls">Persona</span> p = <span class="kw">new</span> <span class="cls">Persona</span>(<span class="str">"Paco"</span>);
+p.setNombre(<span class="str">"Fran"</span>);   <span class="cmt">// ✅ permitido</span>
+<span class="cmt">// p = new Persona("Luis"); → ERROR</span></code></pre>
+        </div>
+      </article>
+
+      <!-- 5.9 Paso por valor y referencia -->
+      <article class="topic">
+        <h3>5.9 Paso por Valor y por Referencia</h3>
+        <p>En Java <strong>siempre se pasa por valor</strong>, pero el significado varía según el tipo. Para tipos primitivos se pasa una copia del dato (los cambios no afectan al original). Para objetos se pasa una copia de la referencia, por lo que las modificaciones sobre el objeto <em>sí</em> afectan al original.</p>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">PasoPorValor.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="kw">public static void</span> <span class="fn">modificarPrimitivo</span>(<span class="tp">int</span> numero) {
+    numero = <span class="num">20</span>; <span class="cmt">// solo cambia la copia local</span>
+}
+
+<span class="kw">public static void</span> <span class="fn">modificarObjeto</span>(<span class="cls">StringBuilder</span> texto) {
+    texto.append(<span class="str">" modificado"</span>); <span class="cmt">// modifica el objeto original</span>
+}
+
+<span class="kw">public static void</span> <span class="fn">main</span>(<span class="tp">String</span>[] args) {
+    <span class="tp">int</span> n = <span class="num">5</span>;
+    modificarPrimitivo(n);
+    System.out.println(n); <span class="cmt">// 5 (no cambió)</span>
+
+    <span class="cls">StringBuilder</span> sb = <span class="kw">new</span> <span class="cls">StringBuilder</span>(<span class="str">"Hola"</span>);
+    modificarObjeto(sb);
+    System.out.println(sb); <span class="cmt">// Hola modificado (sí cambió)</span>
+}</code></pre>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UD6: INTERFACES                                              -->
+    <!-- ============================================================ -->
+    <section id="ud6" class="unit">
+      <div class="unit-header">
+        <span class="unit-number">UD 6</span>
+        <h2>Interfaces</h2>
+        <p>Una <strong>interfaz</strong> es una plantilla que define un conjunto de métodos abstractos y constantes sin implementación. Representa un <em>contrato</em> que las clases que la implementan deben cumplir. Permite la herencia múltiple de tipo y favorece el polimorfismo.</p>
+      </div>
+
+      <!-- 6.1 Definición y sintaxis -->
+      <article class="topic">
+        <h3>6.1 Definición y Sintaxis</h3>
+        <p>Las interfaces se declaran con la palabra clave <code>interface</code>. Sus métodos son implícitamente <code>public abstract</code> y sus atributos son implícitamente <code>public static final</code>. Desde Java 8, las interfaces pueden tener métodos <code>default</code> (con implementación) y métodos <code>static</code>.</p>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">Vehiculo.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="kw">public interface</span> <span class="cls">Vehiculo</span> {
+    <span class="cmt">// Constante (implícitamente public static final)</span>
+    <span class="tp">int</span> VELOCIDAD_MAXIMA = <span class="num">120</span>;
+
+    <span class="cmt">// Métodos abstractos (implícitamente public abstract)</span>
+    <span class="kw">void</span> <span class="fn">acelerar</span>(<span class="tp">int</span> cantidad);
+    <span class="kw">void</span> <span class="fn">frenar</span>(<span class="tp">int</span> cantidad);
+
+    <span class="cmt">// Método default (Java 8+): tiene implementación</span>
+    <span class="kw">default void</span> <span class="fn">mostrarVelocidadMaxima</span>() {
+        System.out.println(<span class="str">"Velocidad máxima: "</span> + VELOCIDAD_MAXIMA);
+    }
+
+    <span class="cmt">// Método estático (Java 8+)</span>
+    <span class="kw">static void</span> <span class="fn">informacionGeneral</span>() {
+        System.out.println(<span class="str">"Los vehículos permiten desplazarse."</span>);
+    }
+}</code></pre>
+        </div>
+      </article>
+
+      <!-- 6.2 Implementación -->
+      <article class="topic">
+        <h3>6.2 Implementación de Interfaces</h3>
+        <p>Una clase implementa una interfaz con la palabra clave <code>implements</code>. Puede implementar <strong>múltiples interfaces</strong> a la vez (herencia múltiple de tipo). Debe proporcionar implementación para todos los métodos abstractos de la interfaz.</p>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">Coche.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="kw">public class</span> <span class="cls">Coche</span> <span class="kw">implements</span> <span class="cls">Vehiculo</span> {
+    <span class="kw">private int</span> velocidadActual = <span class="num">0</span>;
+
+    <span class="ann">@Override</span>
+    <span class="kw">public void</span> <span class="fn">acelerar</span>(<span class="tp">int</span> cantidad) {
+        velocidadActual = Math.min(velocidadActual + cantidad, VELOCIDAD_MAXIMA);
+    }
+
+    <span class="ann">@Override</span>
+    <span class="kw">public void</span> <span class="fn">frenar</span>(<span class="tp">int</span> cantidad) {
+        velocidadActual = Math.max(velocidadActual - cantidad, <span class="num">0</span>);
+    }
+}
+
+<span class="cmt">// Herencia + interfaces a la vez:</span>
+<span class="kw">class</span> <span class="cls">Perro</span> <span class="kw">extends</span> <span class="cls">Animal</span> <span class="kw">implements</span> <span class="cls">Corredor</span>, <span class="cls">Nadador</span> { ... }
+
+<span class="cmt">// Buena práctica: declarar con la interfaz, instanciar con la clase</span>
+<span class="cls">Vehiculo</span> v = <span class="kw">new</span> <span class="cls">Coche</span>(); <span class="cmt">// polimorfismo</span>
+v.acelerar(<span class="num">50</span>);
+v.mostrarVelocidadMaxima();
+<span class="cls">Vehiculo</span>.informacionGeneral();</code></pre>
+        </div>
+      </article>
+
+      <!-- 6.3 Interfaces vs Clases Abstractas -->
+      <article class="topic">
+        <h3>6.3 Interfaces vs Clases Abstractas</h3>
+        <div class="info-table">
+          <table>
+            <thead><tr><th>Característica</th><th>Interfaz</th><th>Clase Abstracta</th></tr></thead>
+            <tbody>
+              <tr><td>Métodos</td><td>Solo abstractos (hasta Java 7). Desde Java 8, también <code>default</code> y <code>static</code>.</td><td>Abstractos y concretos.</td></tr>
+              <tr><td>Herencia</td><td>Herencia múltiple (una clase puede implementar varias)</td><td>Herencia simple</td></tr>
+              <tr><td>Atributos</td><td>Solo constantes (<code>public static final</code>)</td><td>Cualquier tipo de atributo</td></tr>
+              <tr><td>Constructores</td><td>No tiene</td><td>Sí tiene</td></tr>
+              <tr><td>Cuándo usar</td><td>Clases no relacionadas que comparten funcionalidades</td><td>Clases relacionadas con código común</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- 6.4 Polimorfismo con Interfaces -->
+      <article class="topic">
+        <h3>6.4 Polimorfismo con Interfaces</h3>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">PolimorfismoInterfaces.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="kw">interface</span> <span class="cls">Animal</span> {
+    <span class="kw">void</span> <span class="fn">hacerSonido</span>();
+}
+
+<span class="kw">class</span> <span class="cls">Perro</span> <span class="kw">implements</span> <span class="cls">Animal</span> {
+    <span class="kw">public void</span> <span class="fn">hacerSonido</span>() { System.out.println(<span class="str">"Guau"</span>); }
+}
+
+<span class="kw">class</span> <span class="cls">Gato</span> <span class="kw">implements</span> <span class="cls">Animal</span> {
+    <span class="kw">public void</span> <span class="fn">hacerSonido</span>() { System.out.println(<span class="str">"Miau"</span>); }
+}
+
+<span class="kw">public class</span> <span class="cls">Main</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(<span class="tp">String</span>[] args) {
+        <span class="cls">Animal</span> a;
+        a = <span class="kw">new</span> <span class="cls">Perro</span>();
+        a.hacerSonido(); <span class="cmt">// Guau</span>
+        a = <span class="kw">new</span> <span class="cls">Gato</span>();
+        a.hacerSonido(); <span class="cmt">// Miau</span>
+    }
+}</code></pre>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UD7: EXCEPCIONES                                             -->
+    <!-- ============================================================ -->
+    <section id="ud7" class="unit">
+      <div class="unit-header">
+        <span class="unit-number">UD 7</span>
+        <h2>Excepciones</h2>
+        <p>Una <strong>excepción</strong> es un evento producido durante la ejecución de un programa que altera el flujo normal de ejecución. Java proporciona un mecanismo estructurado para detectar, manejar y propagar estos errores.</p>
+      </div>
+
+      <!-- 7.1 Jerarquía -->
+      <article class="topic">
+        <h3>7.1 Jerarquía de Excepciones</h3>
+        <p>Todas las excepciones heredan de <code>Throwable</code>. Se dividen en dos grandes grupos: <code>Error</code> (irrecuperables, de la JVM) y <code>Exception</code> (recuperables, del código). Las <code>Exception</code> se subdividen a su vez en <strong>checked</strong> (verificadas) y <strong>unchecked</strong> (no verificadas).</p>
+        <div class="info-table">
+          <table>
+            <thead><tr><th>Tipo</th><th>Descripción</th><th>¿Obligatorio gestionar?</th><th>Ejemplos</th></tr></thead>
+            <tbody>
+              <tr><td><code>Error</code></td><td>Errores graves de la JVM, irrecuperables</td><td>No</td><td>StackOverflowError, OutOfMemoryError</td></tr>
+              <tr><td><code>RuntimeException</code> (Unchecked)</td><td>Errores de programación. Java los lanza automáticamente.</td><td>No (pero se puede)</td><td>NullPointerException, ArrayIndexOutOfBoundsException, IllegalArgumentException</td></tr>
+              <tr><td><code>Exception</code> (Checked)</td><td>Situaciones previsibles que dependen del uso del programa</td><td>Sí (capturar o propagar)</td><td>IOException, FileNotFoundException, SQLException, ParseException</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- 7.2 try-catch-finally -->
+      <article class="topic">
+        <h3>7.2 Captura: <code>try – catch – finally</code></h3>
+        <p>El bloque <code>try</code> contiene el código que puede lanzar excepciones. El bloque <code>catch</code> captura y gestiona una excepción específica. El bloque <code>finally</code> se ejecuta siempre, independientemente de si se produjo o no una excepción (ideal para liberar recursos).</p>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">TryCatch.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="kw">public static void</span> <span class="fn">main</span>(<span class="tp">String</span>[] args) {
+    <span class="tp">int</span> a = <span class="num">0</span>, b = <span class="num">300</span>;
+
+    <span class="kw">try</span> {
+        <span class="tp">int</span> resultado = b / a; <span class="cmt">// lanza ArithmeticException</span>
+        System.out.println(<span class="str">"Resultado: "</span> + resultado);
+
+    } <span class="kw">catch</span> (<span class="cls">ArithmeticException</span> e) {
+        System.out.println(<span class="str">"Error: "</span> + e.getMessage()); <span class="cmt">// / by zero</span>
+        e.printStackTrace(); <span class="cmt">// traza completa del error</span>
+
+    } <span class="kw">catch</span> (<span class="cls">Exception</span> e) {
+        System.out.println(<span class="str">"Error genérico: "</span> + e.getMessage());
+
+    } <span class="kw">finally</span> {
+        System.out.println(<span class="str">"Programa finalizado."</span>); <span class="cmt">// siempre se ejecuta</span>
+    }
+}</code></pre>
+        </div>
+      </article>
+
+      <!-- 7.3 throws y throw -->
+      <article class="topic">
+        <h3>7.3 Propagación (<code>throws</code>) y Lanzamiento (<code>throw</code>)</h3>
+        <p><code>throws</code> en la firma del método indica que ese método puede lanzar una excepción y delega su gestión al código que lo invoca. <code>throw</code> lanza explícitamente una excepción dentro del código.</p>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">Propagacion.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="cmt">// throws → propaga la excepción al llamador</span>
+<span class="kw">public static double</span> <span class="fn">division</span>(<span class="tp">double</span> a, <span class="tp">double</span> b)
+        <span class="kw">throws</span> <span class="cls">ArithmeticException</span> {
+    <span class="kw">if</span> (b == <span class="num">0</span>)
+        <span class="kw">throw new</span> <span class="cls">ArithmeticException</span>(<span class="str">"Divisor no puede ser cero"</span>);
+    <span class="kw">return</span> a / b;
+}
+
+<span class="kw">public static void</span> <span class="fn">main</span>(<span class="tp">String</span>[] args) {
+    <span class="kw">try</span> {
+        System.out.println(division(<span class="num">10</span>, <span class="num">0</span>));
+    } <span class="kw">catch</span> (<span class="cls">ArithmeticException</span> e) {
+        System.out.println(<span class="str">"Capturada: "</span> + e.getMessage());
+    }
+}
+
+<span class="cmt">// Relanzar una excepción:</span>
+<span class="kw">try</span> { ... }
+<span class="kw">catch</span> (<span class="cls">IOException</span> ex) {
+    <span class="cmt">// tratamiento intermedio...</span>
+    <span class="kw">throw</span> ex; <span class="cmt">// se sigue propagando</span>
+}</code></pre>
+        </div>
+      </article>
+
+      <!-- 7.4 Excepciones personalizadas -->
+      <article class="topic">
+        <h3>7.4 Excepciones Personalizadas</h3>
+        <p>Se pueden crear excepciones propias extendiendo de la clase de excepción adecuada. Si extiende de <code>RuntimeException</code> será <em>unchecked</em>; si extiende de <code>Exception</code> será <em>checked</em>.</p>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">NumeroRepetido.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="cmt">// 1. Crear la clase de excepción personalizada</span>
+<span class="kw">public class</span> <span class="cls">NumeroRepetido</span> <span class="kw">extends</span> <span class="cls">IllegalArgumentException</span> {
+    <span class="kw">public</span> <span class="fn">NumeroRepetido</span>(<span class="tp">String</span> mensaje) {
+        <span class="kw">super</span>(mensaje); <span class="cmt">// reutiliza el constructor del padre</span>
+    }
+}
+
+<span class="cmt">// 2. Lanzarla cuando sea necesario</span>
+<span class="kw">public static void</span> <span class="fn">agregarNumero</span>(<span class="cls">List</span>&lt;<span class="tp">Integer</span>&gt; lista, <span class="tp">int</span> num)
+        <span class="kw">throws</span> <span class="cls">NumeroRepetido</span> {
+    <span class="kw">if</span> (lista.contains(num))
+        <span class="kw">throw new</span> <span class="cls">NumeroRepetido</span>(<span class="str">"El número "</span> + num + <span class="str">" ya existe."</span>);
+    lista.add(num);
+}
+
+<span class="cmt">// 3. Capturarla</span>
+<span class="kw">try</span> {
+    agregarNumero(lista, <span class="num">5</span>);
+} <span class="kw">catch</span> (<span class="cls">NumeroRepetido</span> e) {
+    System.out.println(e.getMessage());
+    e.printStackTrace();
+}</code></pre>
+        </div>
+      </article>
+
+      <!-- 7.5 Aserciones -->
+      <article class="topic">
+        <h3>7.5 Aserciones</h3>
+        <p>Las aserciones (<code>assert</code>) se usan para depurar el código durante el desarrollo. No deben usarse en producción. Se activan con el argumento <code>-ea</code> al ejecutar la JVM.</p>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">Aserciones.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="tp">int</span> x = -<span class="num">15</span>;
+<span class="cmt">// Si x no es positivo, lanza AssertionError con el mensaje</span>
+<span class="kw">assert</span> x > <span class="num">0</span> : <span class="str">"El valor debe ser positivo"</span>;
+System.out.println(<span class="str">"Valor: "</span> + x);
+
+<span class="cmt">// Ejecutar con: java -ea MiClase</span></code></pre>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UD8: TAD / JCF                                               -->
+    <!-- ============================================================ -->
+    <section id="ud8" class="unit">
+      <div class="unit-header">
+        <span class="unit-number">UD 8</span>
+        <h2>Tipos Abstractos de Datos y Colecciones (JCF)</h2>
+        <p>El <strong>Java Collections Framework (JCF)</strong> es un conjunto de interfaces y clases del paquete <code>java.util</code> que proporciona estructuras de datos reutilizables: listas, conjuntos, mapas, etc. Los <strong>tipos genéricos</strong> permiten indicar el tipo de elemento que manejará la colección, aportando seguridad de tipos en tiempo de compilación.</p>
+      </div>
+
+      <!-- 8.1 Tipos Genéricos y Wrappers -->
+      <article class="topic">
+        <h3>8.1 Tipos Genéricos y Tipos Envoltorio (Wrappers)</h3>
+        <p>Las colecciones no admiten tipos primitivos, por lo que se usan los <strong>tipos envoltorio</strong> (<code>Integer</code>, <code>Double</code>, etc.). Java realiza <strong>autoboxing</strong> (primitivo → objeto) y <strong>unboxing</strong> (objeto → primitivo) de forma automática.</p>
+        <div class="info-table">
+          <table>
+            <thead><tr><th>Primitivo</th><th>Wrapper</th><th>Método útil</th></tr></thead>
+            <tbody>
+              <tr><td>int</td><td>Integer</td><td>Integer.parseInt("42")</td></tr>
+              <tr><td>double</td><td>Double</td><td>Double.parseDouble("3.14")</td></tr>
+              <tr><td>boolean</td><td>Boolean</td><td>Boolean.parseBoolean("true")</td></tr>
+              <tr><td>char</td><td>Character</td><td>Character.isLetter('a')</td></tr>
+              <tr><td>long</td><td>Long</td><td>Long.parseLong("123456")</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">Genericos.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="cmt">// Tipo genérico: &lt;String&gt; indica el tipo de elemento</span>
+<span class="cls">List</span>&lt;<span class="tp">String</span>&gt; nombres = <span class="kw">new</span> <span class="cls">ArrayList</span>&lt;&gt;(); <span class="cmt">// Diamond operator &lt;&gt;</span>
+
+<span class="cmt">// Autoboxing: int → Integer (automático)</span>
+<span class="cls">List</span>&lt;<span class="tp">Integer</span>&gt; numeros = <span class="kw">new</span> <span class="cls">ArrayList</span>&lt;&gt;();
+numeros.add(<span class="num">10</span>); <span class="cmt">// autoboxing</span>
+<span class="tp">int</span> n = numeros.get(<span class="num">0</span>); <span class="cmt">// unboxing</span>
+
+<span class="cmt">// Conversión String ↔ primitivo</span>
+<span class="tp">int</span>    edad   = Integer.parseInt(<span class="str">"25"</span>);
+<span class="tp">String</span> edadSt = Integer.toString(<span class="num">25</span>);</code></pre>
+        </div>
+      </article>
+
+      <!-- 8.2 List -->
+      <article class="topic">
+        <h3>8.2 Interfaz <code>List</code>: ArrayList y LinkedList</h3>
+        <p>Una <code>List</code> es una colección ordenada que permite duplicados y acceso por índice. Las dos implementaciones principales son <code>ArrayList</code> (acceso rápido por índice, lento para insertar/eliminar en el medio) y <code>LinkedList</code> (inserción/eliminación rápida en extremos, acceso por índice lento).</p>
+        <div class="info-table">
+          <table>
+            <thead><tr><th>Operación</th><th>ArrayList</th><th>LinkedList</th></tr></thead>
+            <tbody>
+              <tr><td>Acceso por índice (get)</td><td>O(1) – rápido</td><td>O(n) – lento</td></tr>
+              <tr><td>Insertar al final (add)</td><td>O(1) amortizado</td><td>O(1)</td></tr>
+              <tr><td>Insertar en el medio</td><td>O(n)</td><td>O(1) si tienes el nodo</td></tr>
+              <tr><td>Eliminar</td><td>O(n)</td><td>O(1) si tienes el nodo</td></tr>
+              <tr><td>Uso recomendado</td><td>Lectura frecuente</td><td>Inserción/eliminación frecuente</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">Listas.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="kw">import</span> java.util.*;
+
+<span class="cls">List</span>&lt;<span class="tp">String</span>&gt; lista = <span class="kw">new</span> <span class="cls">ArrayList</span>&lt;&gt;();
+lista.add(<span class="str">"Manzana"</span>);
+lista.add(<span class="str">"Banana"</span>);
+lista.add(<span class="num">1</span>, <span class="str">"Naranja"</span>); <span class="cmt">// inserta en posición 1</span>
+lista.remove(<span class="str">"Banana"</span>);
+System.out.println(lista.get(<span class="num">0</span>)); <span class="cmt">// Manzana</span>
+System.out.println(lista.size());   <span class="cmt">// 2</span>
+System.out.println(lista.contains(<span class="str">"Naranja"</span>)); <span class="cmt">// true</span>
+
+<span class="cmt">// LinkedList: métodos adicionales para extremos</span>
+<span class="cls">LinkedList</span>&lt;<span class="tp">String</span>&gt; ll = <span class="kw">new</span> <span class="cls">LinkedList</span>&lt;&gt;();
+ll.addFirst(<span class="str">"Primero"</span>);
+ll.addLast(<span class="str">"Último"</span>);
+System.out.println(ll.getFirst()); <span class="cmt">// Primero</span>
+
+<span class="cmt">// Recorrer con for-each</span>
+<span class="kw">for</span> (<span class="tp">String</span> s : lista) {
+    System.out.println(s);
+}</code></pre>
+        </div>
+      </article>
+
+      <!-- 8.3 Set -->
+      <article class="topic">
+        <h3>8.3 Interfaz <code>Set</code>: HashSet, LinkedHashSet, TreeSet</h3>
+        <p>Un <code>Set</code> es una colección que <strong>no permite elementos duplicados</strong>. Existen tres implementaciones principales según el orden y el rendimiento requerido.</p>
+        <div class="info-table">
+          <table>
+            <thead><tr><th>Implementación</th><th>¿Ordena?</th><th>Rendimiento</th><th>¿Admite null?</th><th>Uso ideal</th></tr></thead>
+            <tbody>
+              <tr><td>HashSet</td><td>No (caótico)</td><td>O(1) – el más rápido</td><td>Sí (uno)</td><td>Solo importa que no haya repetidos</td></tr>
+              <tr><td>LinkedHashSet</td><td>Por orden de inserción</td><td>O(1)</td><td>Sí (uno)</td><td>Recordar orden de llegada</td></tr>
+              <tr><td>TreeSet</td><td>Orden natural (Comparable)</td><td>O(log n)</td><td>No</td><td>Lista siempre ordenada</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">Conjuntos.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="cmt">// HashSet: sin orden garantizado</span>
+<span class="cls">Set</span>&lt;<span class="tp">String</span>&gt; hashSet = <span class="kw">new</span> <span class="cls">HashSet</span>&lt;&gt;();
+hashSet.add(<span class="str">"Java"</span>);
+hashSet.add(<span class="str">"Python"</span>);
+hashSet.add(<span class="str">"Java"</span>); <span class="cmt">// duplicado ignorado</span>
+System.out.println(hashSet.size()); <span class="cmt">// 2</span>
+
+<span class="cmt">// LinkedHashSet: mantiene orden de inserción</span>
+<span class="cls">Set</span>&lt;<span class="tp">String</span>&gt; linked = <span class="kw">new</span> <span class="cls">LinkedHashSet</span>&lt;&gt;();
+linked.add(<span class="str">"C"</span>); linked.add(<span class="str">"A"</span>); linked.add(<span class="str">"B"</span>);
+System.out.println(linked); <span class="cmt">// [C, A, B]</span>
+
+<span class="cmt">// TreeSet: orden natural ascendente</span>
+<span class="cls">TreeSet</span>&lt;<span class="tp">Integer</span>&gt; tree = <span class="kw">new</span> <span class="cls">TreeSet</span>&lt;&gt;();
+tree.add(<span class="num">5</span>); tree.add(<span class="num">1</span>); tree.add(<span class="num">3</span>);
+System.out.println(tree);         <span class="cmt">// [1, 3, 5]</span>
+System.out.println(tree.first()); <span class="cmt">// 1</span>
+System.out.println(tree.last());  <span class="cmt">// 5</span></code></pre>
+        </div>
+      </article>
+
+      <!-- 8.4 Map -->
+      <article class="topic">
+        <h3>8.4 Interfaz <code>Map</code>: HashMap, LinkedHashMap, TreeMap</h3>
+        <p>Un <code>Map</code> representa un diccionario de pares <strong>clave-valor</strong>. Las claves no se repiten. Los valores sí pueden repetirse. Se accede a un valor mediante su clave.</p>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">Mapas.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="kw">import</span> java.util.*;
+
+<span class="cls">Map</span>&lt;<span class="tp">String</span>, <span class="tp">String</span>&gt; mapa = <span class="kw">new</span> <span class="cls">HashMap</span>&lt;&gt;();
+mapa.put(<span class="str">"123"</span>, <span class="str">"Juan Pérez"</span>);
+mapa.put(<span class="str">"456"</span>, <span class="str">"Ana Gómez"</span>);
+mapa.put(<span class="str">"789"</span>, <span class="str">"Luis Rodríguez"</span>);
+
+<span class="cmt">// Acceso por clave</span>
+System.out.println(mapa.get(<span class="str">"123"</span>));      <span class="cmt">// Juan Pérez</span>
+System.out.println(mapa.containsKey(<span class="str">"456"</span>)); <span class="cmt">// true</span>
+mapa.remove(<span class="str">"789"</span>);
+
+<span class="cmt">// Recorrer con keySet()</span>
+<span class="kw">for</span> (<span class="tp">String</span> clave : mapa.keySet()) {
+    System.out.println(clave + <span class="str">" → "</span> + mapa.get(clave));
+}
+
+<span class="cmt">// Recorrer con entrySet() (más eficiente)</span>
+<span class="kw">for</span> (<span class="cls">Map.Entry</span>&lt;<span class="tp">String</span>, <span class="tp">String</span>&gt; e : mapa.entrySet()) {
+    System.out.println(e.getKey() + <span class="str">" → "</span> + e.getValue());
+}
+
+<span class="cmt">// TreeMap: claves ordenadas alfabéticamente</span>
+<span class="cls">Map</span>&lt;<span class="tp">String</span>, <span class="tp">Integer</span>&gt; notas = <span class="kw">new</span> <span class="cls">TreeMap</span>&lt;&gt;();
+notas.put(<span class="str">"Matemáticas"</span>, <span class="num">9</span>);
+notas.put(<span class="str">"Historia"</span>, <span class="num">7</span>);
+System.out.println(notas); <span class="cmt">// {Historia=7, Matemáticas=9}</span></code></pre>
+        </div>
+      </article>
+
+      <!-- 8.5 Iteradores -->
+      <article class="topic">
+        <h3>8.5 Iteradores (<code>Iterator</code> y <code>ListIterator</code>)</h3>
+        <p>Un <strong>iterador</strong> es un objeto que permite recorrer una colección de forma segura, especialmente cuando se necesita eliminar elementos durante el recorrido (algo que no funciona bien con <code>for-each</code>). <code>ListIterator</code> permite además recorrer en ambas direcciones.</p>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">Iteradores.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="cls">List</span>&lt;<span class="tp">String</span>&gt; lista = <span class="kw">new</span> <span class="cls">ArrayList</span>&lt;&gt;(
+    <span class="cls">List</span>.of(<span class="str">"Ana"</span>, <span class="str">"Borrar"</span>, <span class="str">"Carlos"</span>)
+);
+
+<span class="cls">Iterator</span>&lt;<span class="tp">String</span>&gt; it = lista.iterator();
+<span class="kw">while</span> (it.hasNext()) {
+    <span class="tp">String</span> s = it.next();
+    <span class="kw">if</span> (s.equals(<span class="str">"Borrar"</span>)) {
+        it.remove(); <span class="cmt">// eliminación segura</span>
+    }
+}
+System.out.println(lista); <span class="cmt">// [Ana, Carlos]</span>
+
+<span class="cmt">// ListIterator: recorrido bidireccional</span>
+<span class="cls">ListIterator</span>&lt;<span class="tp">String</span>&gt; lit = lista.listIterator(lista.size());
+<span class="kw">while</span> (lit.hasPrevious()) {
+    System.out.println(lit.previous()); <span class="cmt">// Carlos, Ana</span>
+}</code></pre>
+        </div>
+      </article>
+
+      <!-- 8.6 Comparable y Comparator -->
+      <article class="topic">
+        <h3>8.6 Comparadores: <code>Comparable</code> y <code>Comparator</code></h3>
+        <p><code>Comparable</code> (paquete <code>java.lang</code>) define el <strong>orden natural</strong> de una clase implementando el método <code>compareTo()</code>. <code>Comparator</code> (paquete <code>java.util</code>) define <strong>órdenes alternativos</strong> sin modificar la clase original, implementando el método <code>compare()</code>.</p>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">Comparadores.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="cmt">// Comparable: orden natural por nombre</span>
+<span class="kw">public class</span> <span class="cls">Persona</span> <span class="kw">implements</span> <span class="cls">Comparable</span>&lt;<span class="cls">Persona</span>&gt; {
+    <span class="kw">private</span> <span class="tp">String</span> nombre;
+    <span class="kw">private</span> <span class="tp">int</span>    edad;
+
+    <span class="ann">@Override</span>
+    <span class="kw">public int</span> <span class="fn">compareTo</span>(<span class="cls">Persona</span> otra) {
+        <span class="kw">return</span> <span class="kw">this</span>.nombre.compareTo(otra.nombre); <span class="cmt">// orden alfabético</span>
+    }
+}
+
+<span class="cmt">// Comparator: orden alternativo por edad</span>
+<span class="kw">public class</span> <span class="cls">ComparadorPorEdad</span> <span class="kw">implements</span> <span class="cls">Comparator</span>&lt;<span class="cls">Persona</span>&gt; {
+    <span class="ann">@Override</span>
+    <span class="kw">public int</span> <span class="fn">compare</span>(<span class="cls">Persona</span> p1, <span class="cls">Persona</span> p2) {
+        <span class="kw">return</span> Integer.compare(p1.getEdad(), p2.getEdad());
+    }
+}
+
+<span class="cmt">// Uso con lambda (más conciso):</span>
+<span class="cls">Comparator</span>&lt;<span class="cls">Persona</span>&gt; porNombre = <span class="cls">Comparator</span>.comparing(<span class="cls">Persona</span>::getNombre);
+<span class="cls">Set</span>&lt;<span class="cls">Persona</span>&gt; personas = <span class="kw">new</span> <span class="cls">TreeSet</span>&lt;&gt;(porNombre);
+personas.add(<span class="kw">new</span> <span class="cls">Persona</span>(<span class="str">"Fran"</span>, <span class="num">18</span>));
+personas.add(<span class="kw">new</span> <span class="cls">Persona</span>(<span class="str">"Ana"</span>,  <span class="num">19</span>));
+System.out.println(personas); <span class="cmt">// [Ana, Fran]</span></code></pre>
+        </div>
+      </article>
+
+      <!-- 8.7 Collections (clase utilitaria) -->
+      <article class="topic">
+        <h3>8.7 Clase de Utilidades <code>Collections</code></h3>
+        <p>La clase <code>Collections</code> (con 's') es diferente de la interfaz <code>Collection</code>. Contiene métodos estáticos de utilidad para operar sobre colecciones.</p>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">ColeccionesUtil.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="kw">import</span> java.util.*;
+
+<span class="cls">List</span>&lt;<span class="tp">String</span>&gt; nombres = <span class="kw">new</span> <span class="cls">ArrayList</span>&lt;&gt;(
+    <span class="cls">List</span>.of(<span class="str">"Lucía"</span>, <span class="str">"Carlos"</span>, <span class="str">"Ana"</span>, <span class="str">"Pedro"</span>)
+);
+
+Collections.sort(nombres);           <span class="cmt">// [Ana, Carlos, Lucía, Pedro]</span>
+Collections.reverse(nombres);        <span class="cmt">// [Pedro, Lucía, Carlos, Ana]</span>
+Collections.shuffle(nombres);        <span class="cmt">// orden aleatorio</span>
+
+<span class="cls">List</span>&lt;<span class="tp">Integer</span>&gt; notas = <span class="cls">List</span>.of(<span class="num">5</span>, <span class="num">7</span>, <span class="num">9</span>, <span class="num">4</span>, <span class="num">6</span>);
+System.out.println(Collections.max(notas)); <span class="cmt">// 9</span>
+System.out.println(Collections.min(notas)); <span class="cmt">// 4</span>
+
+<span class="cls">List</span>&lt;<span class="tp">String</span>&gt; palabras = <span class="cls">List</span>.of(<span class="str">"sol"</span>, <span class="str">"luna"</span>, <span class="str">"sol"</span>);
+System.out.println(Collections.frequency(palabras, <span class="str">"sol"</span>)); <span class="cmt">// 2</span></code></pre>
+        </div>
+      </article>
+
+      <!-- 8.8 Objetos Inmutables -->
+      <article class="topic">
+        <h3>8.8 Objetos Inmutables</h3>
+        <p>Un objeto <strong>inmutable</strong> es aquel cuyo contenido no puede cambiar una vez creado. Si se "modifica", en realidad se crea un nuevo objeto. Los ejemplos más conocidos en Java son <code>String</code> y los tipos envoltorio (<code>Integer</code>, etc.).</p>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">Inmutables.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="tp">String</span> texto = <span class="str">"Hola"</span>;
+texto.concat(<span class="str">" mundo"</span>);          <span class="cmt">// no modifica texto</span>
+System.out.println(texto);         <span class="cmt">// Hola</span>
+
+<span class="tp">String</span> nuevo = texto.concat(<span class="str">" mundo"</span>); <span class="cmt">// crea nuevo objeto</span>
+System.out.println(nuevo);         <span class="cmt">// Hola mundo</span>
+
+<span class="cmt">// final en colección: no se puede reasignar la referencia</span>
+<span class="cmt">// pero SÍ modificar el contenido</span>
+<span class="kw">final</span> <span class="cls">ArrayList</span>&lt;<span class="tp">String</span>&gt; lista = <span class="kw">new</span> <span class="cls">ArrayList</span>&lt;&gt;();
+lista.add(<span class="str">"Hola"</span>);   <span class="cmt">// ✅ permitido</span>
+<span class="cmt">// lista = new ArrayList&lt;&gt;(); → ERROR de compilación</span></code></pre>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UD9: ENTRADA Y SALIDA                                        -->
+    <!-- ============================================================ -->
+    <section id="ud9" class="unit">
+      <div class="unit-header">
+        <span class="unit-number">UD 9</span>
+        <h2>Entrada y Salida de Información (I/O)</h2>
+        <p>En Java, la entrada y salida de datos se gestiona mediante <strong>flujos de datos</strong> (Streams), que son secuencias ordenadas de datos transmitidas en serie desde un origen hasta un destino. Esta abstracción permite usar el mismo mecanismo independientemente del dispositivo (pantalla, teclado, fichero, red, etc.).</p>
+      </div>
+
+      <!-- 9.1 Flujos de datos -->
+      <article class="topic">
+        <h3>9.1 Tipos de Flujos de Datos</h3>
+        <div class="info-table">
+          <table>
+            <thead><tr><th>Criterio</th><th>Tipo</th><th>Descripción</th></tr></thead>
+            <tbody>
+              <tr><td>Sentido</td><td>Entrada (Input)</td><td>Se LEE información desde el origen</td></tr>
+              <tr><td>Sentido</td><td>Salida (Output)</td><td>Se ESCRIBE información hacia el destino</td></tr>
+              <tr><td>Acceso</td><td>Secuencial</td><td>Hay que pasar por los elementos anteriores para llegar al deseado</td></tr>
+              <tr><td>Acceso</td><td>Directo (aleatorio)</td><td>Se accede directamente al elemento deseado</td></tr>
+              <tr><td>Tipo de dato</td><td>Caracteres</td><td>Datos codificados en caracteres (Unicode, ASCII)</td></tr>
+              <tr><td>Tipo de dato</td><td>Bytes</td><td>Datos binarios sin codificación</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- 9.2 Flujos estándar -->
+      <article class="topic">
+        <h3>9.2 Flujos Estándar: <code>System.in</code>, <code>System.out</code>, <code>System.err</code></h3>
+        <p>Mientras se ejecuta un programa, Java mantiene abiertos tres flujos predeterminados sin necesidad de crearlos manualmente.</p>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">FlujosEstandar.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="cmt">// System.out → PrintStream (salida estándar: pantalla)</span>
+System.out.print(<span class="str">"Sin salto de línea"</span>);
+System.out.println(<span class="str">"Con salto de línea"</span>);
+System.out.printf(<span class="str">"Formateado: %.2f%n"</span>, <span class="num">3.14159</span>); <span class="cmt">// 3.14</span>
+
+<span class="cmt">// System.err → PrintStream (salida de error: pantalla en rojo)</span>
+System.err.println(<span class="str">"Error crítico detectado"</span>);
+
+<span class="cmt">// System.in → InputStream (entrada estándar: teclado)</span>
+<span class="tp">int</span> byteLeido = System.in.read(); <span class="cmt">// lee un byte</span>
+System.out.write(byteLeido);      <span class="cmt">// escribe el byte</span>
+System.out.flush();               <span class="cmt">// vacía el buffer</span></code></pre>
+        </div>
+      </article>
+
+      <!-- 9.3 Scanner -->
+      <article class="topic">
+        <h3>9.3 Clase <code>Scanner</code></h3>
+        <p><code>Scanner</code> añade una capa de abstracción sobre <code>System.in</code> que facilita la lectura de tipos primitivos y cadenas. Lee por <strong>tokens</strong> (grupos de caracteres separados por espacios por defecto).</p>
+        <div class="info-table">
+          <table>
+            <thead><tr><th>Método</th><th>Qué lee</th><th>Ejemplo</th></tr></thead>
+            <tbody>
+              <tr><td>next()</td><td>Una sola palabra (hasta el primer espacio)</td><td>String p = sc.next();</td></tr>
+              <tr><td>nextLine()</td><td>Una frase entera (hasta Enter)</td><td>String f = sc.nextLine();</td></tr>
+              <tr><td>nextInt()</td><td>Un número entero</td><td>int n = sc.nextInt();</td></tr>
+              <tr><td>nextDouble()</td><td>Un número decimal</td><td>double d = sc.nextDouble();</td></tr>
+              <tr><td>hasNextInt()</td><td>Comprueba si el siguiente token es int</td><td>if (sc.hasNextInt()) { ... }</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">UsoScanner.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="kw">import</span> java.util.Scanner;
+
+<span class="kw">public class</span> <span class="cls">HolaMundo</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(<span class="tp">String</span>[] args) {
+        <span class="cls">Scanner</span> sc = <span class="kw">new</span> <span class="cls">Scanner</span>(System.in);
+
+        System.out.print(<span class="str">"Introduce tu nombre completo: "</span>);
+        <span class="tp">String</span> nombre = sc.nextLine();
+
+        System.out.print(<span class="str">"Introduce tu edad: "</span>);
+        <span class="tp">int</span> edad = sc.nextInt();
+
+        System.out.printf(<span class="str">"Hola %s, tienes %d años.%n"</span>, nombre, edad);
+
+        sc.close(); <span class="cmt">// buena práctica: cerrar el Scanner</span>
+    }
+}</code></pre>
+        </div>
+      </article>
+
+      <!-- 9.4 Clases de flujos -->
+      <article class="topic">
+        <h3>9.4 Clases para Manejar Flujos (<code>java.io</code>)</h3>
+        <p>El paquete <code>java.io</code> proporciona clases abstractas base para manejar flujos. Las clases de <strong>bytes</strong> heredan de <code>InputStream</code>/<code>OutputStream</code>; las de <strong>caracteres</strong> heredan de <code>Reader</code>/<code>Writer</code>.</p>
+        <div class="info-table">
+          <table>
+            <thead><tr><th>Tipo</th><th>Entrada</th><th>Salida</th></tr></thead>
+            <tbody>
+              <tr><td>Bytes</td><td>InputStream</td><td>OutputStream</td></tr>
+              <tr><td>Caracteres</td><td>Reader</td><td>Writer</td></tr>
+              <tr><td>Fichero (bytes)</td><td>FileInputStream</td><td>FileOutputStream</td></tr>
+              <tr><td>Fichero (chars)</td><td>FileReader</td><td>FileWriter</td></tr>
+              <tr><td>Buffer (bytes)</td><td>BufferedInputStream</td><td>BufferedOutputStream</td></tr>
+              <tr><td>Buffer (chars)</td><td>BufferedReader</td><td>BufferedWriter</td></tr>
+              <tr><td>Datos primitivos</td><td>DataInputStream</td><td>DataOutputStream</td></tr>
+              <tr><td>Objetos</td><td>ObjectInputStream</td><td>ObjectOutputStream</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- 9.5 Ficheros y Directorios -->
+      <article class="topic">
+        <h3>9.5 Ficheros y Directorios</h3>
+        <p>La clase <code>java.io.File</code> representa un fichero o directorio en el sistema de archivos. <strong>No lo abre ni lo crea</strong>; solo lo representa y permite obtener información sobre él. Para crear, leer o escribir hay que usar las clases de flujos.</p>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">Ficheros.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="kw">import</span> java.io.*;
+
+<span class="cmt">// Clase File: representa el fichero</span>
+<span class="cls">File</span> archivo = <span class="kw">new</span> <span class="cls">File</span>(<span class="str">"notas.txt"</span>);
+<span class="kw">if</span> (archivo.exists()) {
+    System.out.println(<span class="str">"Ruta: "</span> + archivo.getAbsolutePath());
+    System.out.println(<span class="str">"Tamaño: "</span> + archivo.length() + <span class="str">" bytes"</span>);
+} <span class="kw">else</span> {
+    archivo.createNewFile(); <span class="cmt">// crea el fichero</span>
+}
+
+<span class="cmt">// Escribir con FileWriter (caracteres)</span>
+<span class="kw">try</span> (<span class="cls">FileWriter</span> fw = <span class="kw">new</span> <span class="cls">FileWriter</span>(<span class="str">"ejemplo.txt"</span>)) {
+    fw.write(<span class="str">"Hola desde Java\n"</span>);
+    fw.write(<span class="str">"Segunda línea\n"</span>);
+} <span class="cmt">// try-with-resources: cierra automáticamente</span>
+
+<span class="cmt">// Leer con FileReader (carácter a carácter)</span>
+<span class="kw">try</span> (<span class="cls">FileReader</span> fr = <span class="kw">new</span> <span class="cls">FileReader</span>(<span class="str">"ejemplo.txt"</span>)) {
+    <span class="tp">int</span> c;
+    <span class="kw">while</span> ((c = fr.read()) != -<span class="num">1</span>) {
+        System.out.print((<span class="tp">char</span>) c);
+    }
+} <span class="kw">catch</span> (<span class="cls">IOException</span> e) {
+    e.printStackTrace();
+}
+
+<span class="cmt">// Escribir bytes con FileOutputStream</span>
+<span class="kw">try</span> (<span class="cls">FileOutputStream</span> fos = <span class="kw">new</span> <span class="cls">FileOutputStream</span>(<span class="str">"datos.bin"</span>)) {
+    <span class="tp">byte</span>[] datos = {<span class="num">72</span>, <span class="num">111</span>, <span class="num">108</span>, <span class="num">97</span>}; <span class="cmt">// "Hola" en ASCII</span>
+    fos.write(datos);
+}</code></pre>
+        </div>
+      </article>
+
+      <!-- 9.6 RandomAccessFile -->
+      <article class="topic">
+        <h3>9.6 Acceso Directo: <code>RandomAccessFile</code></h3>
+        <p><code>RandomAccessFile</code> trata el fichero como un array de bytes gigante con un <strong>puntero</strong> de posición. Permite leer y escribir en cualquier posición del fichero sin recorrerlo secuencialmente.</p>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">AccesoDirecto.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="kw">import</span> java.io.*;
+
+<span class="cmt">// "rw" → lectura y escritura</span>
+<span class="kw">try</span> (<span class="cls">RandomAccessFile</span> raf = <span class="kw">new</span> <span class="cls">RandomAccessFile</span>(<span class="str">"datos.txt"</span>, <span class="str">"rw"</span>)) {
+    raf.writeBytes(<span class="str">"Hola Mundo"</span>);
+
+    <span class="cmt">// Mover puntero a posición 5 ('M') y sobreescribir</span>
+    raf.seek(<span class="num">5</span>);
+    raf.writeBytes(<span class="str">"P"</span>);
+
+    <span class="cmt">// Volver al principio y leer</span>
+    raf.seek(<span class="num">0</span>);
+    System.out.println(raf.readLine()); <span class="cmt">// Hola Pundo</span>
+    System.out.println(<span class="str">"Tamaño: "</span> + raf.length());
+}</code></pre>
+        </div>
+      </article>
+
+      <!-- 9.7 Serialización -->
+      <article class="topic">
+        <h3>9.7 Serialización</h3>
+        <p>La <strong>serialización</strong> es el proceso de convertir un objeto en una secuencia de bytes para almacenarlo o transmitirlo. La <strong>deserialización</strong> es el proceso inverso. Para que un objeto sea serializable, su clase debe implementar la interfaz marcadora <code>Serializable</code>.</p>
+        <div class="info-table">
+          <table>
+            <thead><tr><th>Concepto</th><th>Descripción</th></tr></thead>
+            <tbody>
+              <tr><td>Serializable</td><td>Interfaz marcadora (sin métodos). Indica que la clase puede serializarse.</td></tr>
+              <tr><td>serialVersionUID</td><td>ID único estático que garantiza compatibilidad entre versiones de la clase.</td></tr>
+              <tr><td>transient</td><td>Modificador que excluye un atributo de la serialización (p. ej., contraseñas).</td></tr>
+              <tr><td>ObjectOutputStream</td><td>Escribe objetos en un flujo (serializa) con writeObject().</td></tr>
+              <tr><td>ObjectInputStream</td><td>Lee objetos de un flujo (deserializa) con readObject().</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">Serializacion.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="kw">import</span> java.io.*;
+
+<span class="cmt">// Clase serializable</span>
+<span class="kw">public class</span> <span class="cls">Jugador</span> <span class="kw">implements</span> <span class="cls">Serializable</span> {
+    <span class="kw">private static final long</span> serialVersionUID = <span class="num">1L</span>;
+    <span class="kw">private</span> <span class="tp">String</span> nombre;
+    <span class="kw">private</span> <span class="tp">int</span>    nivel;
+    <span class="kw">private transient</span> <span class="tp">String</span> password; <span class="cmt">// NO se serializa</span>
+
+    <span class="kw">public</span> <span class="fn">Jugador</span>(<span class="tp">String</span> nombre, <span class="tp">int</span> nivel, <span class="tp">String</span> password) {
+        <span class="kw">this</span>.nombre   = nombre;
+        <span class="kw">this</span>.nivel    = nivel;
+        <span class="kw">this</span>.password = password;
+    }
+}
+
+<span class="cmt">// Serializar (guardar)</span>
+<span class="cls">Jugador</span> j = <span class="kw">new</span> <span class="cls">Jugador</span>(<span class="str">"Fran"</span>, <span class="num">42</span>, <span class="str">"s3cr3t"</span>);
+<span class="kw">try</span> (<span class="cls">ObjectOutputStream</span> oos = <span class="kw">new</span> <span class="cls">ObjectOutputStream</span>(
+        <span class="kw">new</span> <span class="cls">FileOutputStream</span>(<span class="str">"jugador.dat"</span>))) {
+    oos.writeObject(j);
+}
+
+<span class="cmt">// Deserializar (recuperar)</span>
+<span class="kw">try</span> (<span class="cls">ObjectInputStream</span> ois = <span class="kw">new</span> <span class="cls">ObjectInputStream</span>(
+        <span class="kw">new</span> <span class="cls">FileInputStream</span>(<span class="str">"jugador.dat"</span>))) {
+    <span class="cls">Jugador</span> recuperado = (<span class="cls">Jugador</span>) ois.readObject();
+    <span class="cmt">// recuperado.password → null (era transient)</span>
+}</code></pre>
+        </div>
+      </article>
+
+      <!-- 9.8 XML y DOM -->
+      <article class="topic">
+        <h3>9.8 XML en Java: API DOM</h3>
+        <p>XML (<em>eXtensible Markup Language</em>) es un lenguaje de marcado independiente de plataforma para estructurar datos. El modelo <strong>DOM</strong> (<em>Document Object Model</em>) carga todo el XML en memoria como un árbol de nodos, permitiendo leer y modificar su contenido. La API DOM está incluida en el JDK en el paquete <code>org.w3c.dom</code>.</p>
+        <div class="info-table">
+          <table>
+            <thead><tr><th>Interfaz DOM</th><th>Qué representa</th></tr></thead>
+            <tbody>
+              <tr><td>Document</td><td>Todo el documento XML (raíz del árbol)</td></tr>
+              <tr><td>Element</td><td>Un elemento delimitado por etiquetas (&lt;tag&gt;...&lt;/tag&gt;)</td></tr>
+              <tr><td>Node</td><td>Cualquier objeto del XML (texto, tag, atributo...)</td></tr>
+              <tr><td>NodeList</td><td>Lista de nodos</td></tr>
+              <tr><td>Attr</td><td>Atributo de un elemento</td></tr>
+              <tr><td>Text</td><td>Contenido textual de un nodo</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="vscode-window">
+          <div class="vscode-titlebar">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <span class="filename">LecturaXML.java</span>
+          </div>
+          <pre class="vscode-code"><code><span class="kw">import</span> javax.xml.parsers.*;
+<span class="kw">import</span> org.w3c.dom.*;
+
+<span class="cmt">// Leer XML</span>
+<span class="cls">DocumentBuilderFactory</span> factory = <span class="cls">DocumentBuilderFactory</span>.newInstance();
+<span class="cls">DocumentBuilder</span>        builder = factory.newDocumentBuilder();
+<span class="cls">Document</span>               doc     = builder.parse(<span class="kw">new</span> <span class="cls">File</span>(<span class="str">"datos.xml"</span>));
+
+<span class="cls">Element</span>  raiz     = doc.getDocumentElement();
+<span class="cls">NodeList</span> personas = doc.getElementsByTagName(<span class="str">"persona"</span>);
+
+<span class="kw">for</span> (<span class="tp">int</span> i = <span class="num">0</span>; i &lt; personas.getLength(); i++) {
+    <span class="cls">Element</span> persona = (<span class="cls">Element</span>) personas.item(i);
+    <span class="tp">String</span>  nombre  = persona.getElementsByTagName(<span class="str">"nombre"</span>)
+                              .item(<span class="num">0</span>).getTextContent();
+    System.out.println(<span class="str">"Nombre: "</span> + nombre);
+}
+
+<span class="cmt">// Escribir XML</span>
+<span class="cls">Element</span> nuevaPersona = doc.createElement(<span class="str">"persona"</span>);
+<span class="cls">Element</span> nombreElem   = doc.createElement(<span class="str">"nombre"</span>);
+nombreElem.appendChild(doc.createTextNode(<span class="str">"Lucía"</span>));
+nuevaPersona.appendChild(nombreElem);
+raiz.appendChild(nuevaPersona);</code></pre>
+        </div>
+      </article>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-inner">
+      <p>Portfolio de Programación Java · 1º DAW · Módulo de Programación</p>
+      <p>Basado en los apuntes del curso 2025/2026 · Autor: Fran Gómez</p>
+      <p class="footer-license">Licencia Creative Commons Attribution-NonCommercial-ShareAlike 4.0</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
