@@ -1,27 +1,16 @@
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
-import javax.persistence.*;
+package UD10;
 
-@Entity
-public class EventoMusical implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen")
-    @SequenceGenerator(name = "gen", initialValue = 10, allocationSize = 10)
-    private Long id;
+import java.sql.Date;
+import java.math.BigDecimal;
+
+public class EventoMusical {
 
     private String nombre;
-    @Temporal(TemporalType.DATE) private Date fecha;
+    private Date fecha;
     private BigDecimal recaudacion;
 
-    @ElementCollection
-    private List<String> artistas;
-
-    @Transient
-    private int control;
-
-    public EventoMusical() {} // Obligatorio para JPA
+    public EventoMusical() {
+    }
 
     public EventoMusical(String nombre, Date fecha, BigDecimal recaudacion) {
         this.nombre = nombre;
@@ -29,8 +18,36 @@ public class EventoMusical implements Serializable {
         this.recaudacion = recaudacion;
     }
 
-    // Getters y Setters necesarios
-    public Long getId() { return id; }
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public BigDecimal getRecaudacion() {
+        return recaudacion;
+    }
+
+    public void setRecaudacion(BigDecimal recaudacion) {
+        this.recaudacion = recaudacion;
+    }
+
+    @Override
+    public String toString() {
+        return "EventoMusical{" +
+                "nombre='" + nombre + '\'' +
+                ", fecha=" + fecha +
+                ", recaudacion=" + recaudacion +
+                '}';
+    }
 }
